@@ -29,8 +29,6 @@ def light_off():
 
 
 def ir_signal_send(device: IRDeviceControl, button: str):
-    print(f"{device} {button=}")
-
     pi = pigpio.pi() # Connect to Pi.
 
     if not pi.connected:
