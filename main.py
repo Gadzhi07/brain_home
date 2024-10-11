@@ -1,9 +1,8 @@
 from nicegui import ui
 from nicegui.events import ValueChangeEventArguments
-from control import IRDeviceControl, extension_cable_off, extension_cable_on, ir_signal_send, light_off, light_on
+from control import all_devices, IRDeviceControl, light_off, light_on,\
+    ir_signal_send, extension_cable_off, extension_cable_on
 
-
-all_devices = [IRDeviceControl('Пульт', 'pult.conf', 17), IRDeviceControl('Подсветка', 'svet.conf', 27)]
 
 with ui.grid(columns=2):
     with ui.row().style('gap: 0.1rem'):
@@ -73,11 +72,11 @@ def backlight_ui():
         ui.label()
         ui.button('OFF', on_click=lambda: ir_signal_send(device, 'off'))
 
-        with ui.button(on_click=lambda: ir_signal_send(device, 'up')).style('height: 50px; width: 98px'):
+        with ui.button(on_click=lambda: ir_signal_send(device, 'high')).style('height: 50px; width: 98px'):
             ui.image('./static/bright_up.png').style('margin-top: -13px')
         ui.label()
         ui.button('Белый', on_click=lambda: ir_signal_send(device, 'white'))
-        with ui.button(on_click=lambda: ir_signal_send(device, 'down')).style('height: 50px; width: 98px'):
+        with ui.button(on_click=lambda: ir_signal_send(device, 'low')).style('height: 50px; width: 98px'):
             ui.image('./static/bright_down.png').style('margin-top: -13px')
 
 
